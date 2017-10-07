@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <link rel="stylesheet" href="css/magnific-popup.css" />
+    <script src="js/jquery.magnific-popup.js"></script>
+    <script src="js/jquery.validate.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width">
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('.slider-home ul').slick({
+                infinite: true,
+                dots: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                arrows: false
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery('.slider-home ul li[aria-describedby]').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                tLoading: 'Loading...',
+                mainClass: 'mfp-img-mobile',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0,1]
+                },
+                image: {
+                    tError: '<a href="#">The image</a> could not be loaded.',
+                    titleSrc: function(item) {
+                        //return item.el.attr('title') + '<small></small>';
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 1){
+                $('nav').addClass("sticky");
+                $('.navigation ').addClass("sticky")
+                $('.navigation li ').addClass("small")
+            }
+            else{
+                $('nav').removeClass("sticky");
+                $('.navigation').removeClass("sticky")
+                $('.navigation li').removeClass("small")
+            }
+        });
+    </script>
+    <script>
+        function  hide(){
+            document.getElementById('mobile_menu').style.display="none";
+        }
+        function  show(){
+            document.getElementById('mobile_menu').style.display="flex";
+        }
+    </script>
+    <script>
+        function disp(form) {
+            if (form.style.display == "none") {
+                form.style.display = "flex";
+            } else {
+                form.style.display = "none";
+            }}
+    </script>
+    <script>
+        jQuery(function($){
+            $("#phone-desctop").mask("+380 (99) 999-99-99");
+            $("#phone_tablet").mask("+380 (99) 999-99-99");
+        });
+    </script>
+    <script>
+        $(function(){
+            $('#dialog-desctop').validate({
+                rules:{
+                    fio:{
+                        required:true,
+                        minlength: 2,
+                        maxlength:100
+                    },
+                    email: {
+                        required: true,
+                        maxlength:100
+                    },
+                    phone:{
+                        required:true,
+                        maxlength:20
+                    }
+                }
+            });
+        });
+</script>
+<script>
+    jQuery(document).ready(function($) {
+
+        $("#dialog-desctop").submit(function() {
+            var str = $(this).serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "send.php",
+                data: str,
+                success: function(msg) {
+                    if(msg == 'OK') {
+                        result = '<div class="notification_ok">Ваше сообщение отправлено</div>';
+                        $(".fields").hide();
+                    } else {
+                        result = msg;
+                    }
+                    $('.note').html(result);
+                }
+            });
+            return false;
+        });
+    });
+
+    $('.send_mass').click(function(event){
+
+        alert('Wrong captcha!');
+
+
+    });
+</script>
+    <script>
+        jQuery(document).ready(function($) {
+
+            $("#dialog-tablet").submit(function() {
+                var str = $(this).serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "send.php",
+                    data: str,
+                    success: function(msg) {
+                        if(msg == 'OK') {
+                            result = '<div class="notification_ok">Ваше сообщение отправлено</div>';
+                            $(".fields").hide();
+                        } else {
+                            result = msg;
+                        }
+                        $('.note').html(result);
+                    }
+                });
+                return false;
+            });
+        });
+
+        $('.send_mass').click(function(event){
+
+            alert('Wrong captcha!');
+
+
+        });
+    </script>
+    <script>
+        $(function(){
+            $('#dialog-tablet').validate({
+                rules:{
+                    fio:{
+                        required:true,
+                        minlength: 2,
+                        maxlength:100
+                    },
+                    email: {
+                        required: true,
+                        maxlength: 100
+                    },
+                    phone:{
+                        required:true,
+                        maxlength:20
+                    }
+                }
+            });
+        });
+    </script>
+    <title>Клиника Багирова</title>
+</head>
+<body>
+<!--[if lt IE 8]><div class="old_br">
+    Уважаемый Пользователь!</br>
+    Вы используете <span class="red">устаревший WEB-браузер</span>.
+    </br>    Предлагаем Вам установить и использовать последние версии WEB-браузеров, например:<br/>
+    <ul>        <li>Google Chrome <a href="https://www.google.com/chrome">https://www.google.com/chrome</a></li>
+        <li>Mozilla Firefox <a href="http://www.mozilla.org/ru/firefox/new/">http://www.mozilla.org/ru/firefox/new/</a></li>
+        <li>Opera <a href="http://www.opera.com/download/">http://www.opera.com/download/</a></li>    </ul>
+    Последние версии WEB-браузеров доступны для установки на сайтах разработчиков и содержат улучшенные свойства безопасности,
+    повышенную скорость работы, меньшее количество ошибок. Эти простые действия помогут Вам максимально использовать функциональность сайта,
+    избежать ошибок в работе, повысить уровень безопасности.</div><![endif]-->
+<div class="container">
+    <header>
+<!--Мобильная версия -->
+        <div class="mobile_home">
+            <!--Мобильная версия:кнопка меню -->
+            <div class="mobile_menu_button" onclick="show()">
+<img src="img/mobile_menu_button.png">
+                <!--Мобильная версия:Меню -->
+                <div id="mobile_menu" onmouseover="show()" onmouseout="hide()">
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Услуги</a>
+                            <ul class="hide_menu">
+                                <li><a href="#">Косметические операции</a></li>
+                                <li><a href="#">Оперативная дерматология</a></li>
+                                <li><a href="#">Консервативная дерматологи, аллергология и проктология</a></li>
+                                <li><a href="#">Инъекционная терапия <br>омоложения</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Мед.матер.</a></li>
+                        <li><a href="#">Фотогалерея</a></li>
+                        <li><a href="#">Реквизиты</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#">Дипломы</a></li>
+                        <li><a href="#">Прайс</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--Мобильная версия:навигация -->
+            <div class="mobile_nav">
+                <a href="#" id="mobile_green_link">PRAXISCLINIC IN BADEN_BADEN</a>
+                <a href="#" id="mobile_blue_link">PRAXIS IN RANSBACH_RANSBACH</a>
+            </div>
+        </div>
+        <!--Навигация -->
+<nav>
+<ul class="navigation">
+    <li><a href="#">О нас</a></li>
+    <li>
+        <a href="#">Услуги</a>
+    <ul class="hide_menu">
+        <li><a href="#">Косметические операции</a></li>
+        <li><a href="#">Оперативная дерматология</a></li>
+        <li><a href="#">Консервативная дерматологи, аллергология и проктология</a></li>
+        <li><a href="#">Инъекционная терапия <br>омоложения</a></li>
+    </ul>
+    </li>
+    <li><a href="#">Мед.материалы</a></li>
+    <li><a href="#">Фотогалерея</a></li>
+    <li><a href="#">Реквизиты</a></li>
+    <li><a href="#">Новости</a></li>
+    <li><a href="#">Дипломы</a></li>
+    <li><a href="#">Прайс</a></li>
+    <li><a href="#">Контакты</a></li>
+</ul>
+</nav>
+        <!--Хидер - Основной контент -->
+        <div class="header-content">
+            <!--Логотип -->
+            <figure>
+                <img class="logo" src="img/logo.png">
+            <figcaption>
+                <br>CENTER DERMATOLOGIE
+                & SCHONHEITSCHIRURGIE
+                <br>V.BAGIRAV GMBH <br/>
+            </figcaption>
+                <!--Соц. сети-->
+            <div class="social_networks">
+                <a href="#"><img src="img/twitter.png"></a>
+                <a href="#"><img src="img/fb.png"></a>
+                <a href="#"><img src="img/google.png"></a>
+            </div>
+            </figure>
+            <!--Ссылки на лице -->
+            <div class="face">
+            <ul class="header_link">
+                   <li id="link1"><h3>Биоревитализация</h3></li>
+                   <li id="link2"><h3>Ботулинотерапия</h3></li>
+                   <li id="link3"><h3>Векторный лифтинг</h3></li>
+                   <li id="link4"><h3>Пилинг</h3></li>
+                   <li id="link5"><h3>Радиочастотный лифтинг</h3></li>
+               </ul>
+            </div>
+            <!--Языки и цветные ссылки -->
+            <section>
+                <ul>
+                    <li>  <a href="#">DE</a>  </li>
+                    <li>  <a href="#">РУС</a>  </li>
+                    <li>  <a href="#">ENG</a>  </li>
+                </ul>
+                <a href="#" id="green-link">PRAXISCLINIC IN<br>BADEN_BADEN</a>
+                <a href="#" id="blue-link">PRAXIS IN<br>RANSBACH_RANSBACH</a>
+
+            </section>
+
+        </div>
+    </header>
+    <main>
+        <!--Круги услуг -->
+<section class="service">
+<ul>
+    <li><a href="#"><img src="img/face1.png">Косметические операции</a></li>
+    <li><a href="#"><img src="img/face2.png">Оперативная дерматология</a></li>
+</ul>
+    <ul>
+    <li><a href="#"><img src="img/face3.png">Консервативная дерматологи, аллергология и проктология</a></li>
+    <li><a href="#"><img src="img/face4.png">Инъекционная терапия <br>омоложения</a></li>
+</ul>
+</section>
+        <!--Философия -->
+        <div class="philosophy">
+            <figure>
+                <img src="img/Vitaliy_Bagirov.png">
+                <figcaption>
+                    <h4>
+                        Философия
+                    </h4>
+                    <p>
+                        В центре философии моей клиники находится Челове, его здоровье и его душа. Что бы ближе узнать его потребности я сознательно отдалился от концепции клиники-конвеера и сконцентрировался на индивидуаль ных потребностях пациентаю
+                        Достижением гармонии, естественного состояния между телом и душой человека является моей главной задачей!
+                        Так называемые голивудские маскообразные подтяжки кожи лица, неэстественное увеличение либо уменьшение груди безответсвенные откачивания жира является абсолютным табу в моей клинике.
+                    </p>
+                    <p>
+                        Современные технологии оснащения клиники позволяют применять минимально-инвазивные, безопасные хирургические методы, что я вляется гарантией отсутствия малейших подозрений об "искусственном" хирургическом вмешательстве в Ваше тело.
+
+                        <br>
+                        Я помогу Вам чувствовать себя уверенно в Вашем естественном образе.
+                    </p>
+                    <br>
+                    <p>
+                        Виталий Багиров
+                    </p>
+                </figcaption>
+            </figure>
+        </div>
+        <!--Слайдер -->
+        <div class="gallery">
+            <p>Фотогалерея</p>
+            <div class="slider-home">
+                <ul class="slider-gallery">
+                    <li><a href="img/img1.png"><img src="img/img1.png" alt="" /></a></li>
+                    <li><a href="img/img2.png"><img src="img/img2.png" alt="" /></a></li>
+                    <li><a href="img/img3.png"><img src="img/img3.png" alt="" /></a></li>
+                    <li><a href="img/img1.png"><img src="img/img1.png" alt="" /></a></li>
+                    <li><a href="img/img2.png"><img src="img/img2.png" alt="" /></a></li>
+                    <li><a href="img/img3.png"><img src="img/img3.png" alt="" /></a></li>
+                    <li><a href="img/img1.png"><img src="img/img1.png" alt="" /></a></li>
+                    <li><a href="img/img2.png"><img src="img/img2.png" alt="" /></a></li>
+                    <li><a href="img/img3.png"><img src="img/img3.png" alt="" /></a></li>
+                    <li><a href="img/img1.png"><img src="img/img1.png" alt="" /></a></li>
+                    <li><a href="img/img2.png"><img src="img/img2.png" alt="" /></a></li>
+                    <li><a href="img/img3.png"><img src="img/img3.png" alt="" /></a></li>
+                </ul>
+            </div>
+            </div>
+        <!--Новости -->
+        <div class="news">
+            <h3>Новости</h3>
+            <div class="news_content">
+
+                <figure>
+                    <img src="img/news1.png">
+                    <figcaption>
+                        <h4>Wie die Seele uns disck macht </h4><br>
+                        <p>
+                            Wieviel wir essen, diktiert weniger der Magen als unser Seelenlebel: Unter Anspannung gehen wir ofter zum Kuhlschrank, bei Kumer
+                        </p><br>
+                        <div>
+                            <p>12.09.14</p>
+                            <a href="#"><img src="img/right-arrow.png" onmouseover="this.src='img/right-arrow-blue.png'" onmouseout="this.src='img/right-arrow.png'" > </a>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="img/news2.png">
+                    <figcaption>
+                        <h4>
+                            Die Top Ten der Schonheitsoperationen</h4><br>
+                        <p>
+                            Wieviel wir essen, diktiert weniger der Magen als unser Seelenlebel: Unter Anspannung gehen wir ofter zum Kuhlschrank, bei Kumer
+                        </p><br>
+                        <div>
+                            <p>12.09.14</p>
+                            <a href="#"><img src="img/right-arrow.png" id="image1" onmouseover="this.src='img/right-arrow-blue.png'" onmouseout="this.src='img/right-arrow.png'"></a>
+                        </div>
+                    </figcaption>
+
+                </figure>
+                <figure>
+                    <img src="img/news3.png">
+                    <figcaption>
+                        <h4>
+                            Experten-Tipps: So vermeiden Sie Hautkrebs</h4><br>
+                        <p>
+                            Wieviel wir essen, diktiert weniger der Magen als unser Seelenlebel: Unter Anspannung gehen wir ofter zum Kuhlschrank, bei Kumer
+                        </p><br>
+                        <div>
+                            <p>12.09.14</p>
+                            <a href="#"><img  src="img/right-arrow.png" onmouseover="this.src='img/right-arrow-blue.png'" onmouseout="this.src='img/right-arrow.png'"> </a>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </main>
+    <footer >
+        <!--Футер Версия для настольных ПК -->
+        <div class="footer_desctop">
+      <div class="left_footer">
+          <h4>Центр дерматологии и эстетической хирургии В. Багирова</h4>
+          <!--Контакты: левая часть-->
+          <div class="contact_left">
+          <div class="location-left">
+              <img src="img/location.png">
+              <p>    Lange Str. 71, 76530  <br>Baden-Baden, Германия</p>
+          </div>
+          <div class="phone-left">
+              <img src="img/phone.png">
+              <p>+49 7221 7020290</p>
+          </div>
+          </div>
+          <div class="feedback">
+              <div class="networks">
+                  <a href="#"><img src="img/twitter.png"></a>
+                  <a href="#"><img src="img/fb.png"></a>
+                  <a href="#"><img src="img/google.png"></a>
+              </div>
+              <!--Форма обратной связи -->
+            <div class="form">
+                <input type="button" class="button" value="Обратная связь" onclick="disp(document.getElementById('dialog-desctop'))">
+                <div class="note"></div>
+                <div class="fields">
+              <form name="contact_form" method="post" action="" id="dialog-desctop">
+                 <label for="fio-desctop"> Ваше имя и фамилия</label>
+                  <input type="text" name="fio" id="fio-desctop">
+                 <label for="email-desctop"> Електронной почта</label>
+                  <input type="email" name="email" id="email-desctop">
+                  <label for="phone-desctop">Телефон</label>
+                  <input type="text" name="phone" id="phone-desctop">
+                  <label for="descr-desctop">Сообщение</label>
+                 <textarea cols="5" rows="5" name="descr" id="descr-desctop"></textarea>
+                  <input type="submit" value="Отправить" class="send_mass">
+              </form>
+                </div>
+            </div>
+
+          </div>
+      </div>
+            <!--Контакты:правая часть-->
+        <div class="right-footer">
+            <h4>Клиника Багирова</h4>
+            <div class="contact_right">
+            <div class="location-right">
+                <img src="img/location.png">
+                <p> Mühlenweg 2, 56235 <br>Ransbach-Baumbach, Германия</p>
+            </div>
+            <div class="phone-right">
+                <img src="img/phone.png">
+                <p>+49 2623 926777</p>
+            </div>
+            </div>
+       <p> Все права защищены. Разработано  в веб -студии  Seotm.com</p>
+        </div>
+        </div>
+        <!--Футер версия для планшетов -->
+        <div class="footer_tablet">
+            <div class="feedback_tablet">
+                <div class="networks">
+                    <a href="#"><img src="img/twitter.png"></a>
+                    <a href="#"><img src="img/fb.png"></a>
+                    <a href="#"><img src="img/google.png"></a>
+                </div>
+                <!--Форма обратной связи -->
+                <div class="form">
+                    <div class="note"></div>
+                    <input type="button" class="button-tablet" value="Обратная связь" onclick="disp(document.getElementById('dialog-tablet'))">
+                    <div class="fields">
+                    <form name="contact_form" method="post" action="" id="dialog-tablet">
+                        <label for="fio_tablet"> Ваше имя и фамилия</label>
+                        <input type="text" name="fio" id="fio_tablet">
+                        <label for="email_tablet"> Електронной почта</label>
+                        <input type="email" name="email" id="email_tablet">
+                        <label for="phone_tablet">Телефон</label>
+                        <input type="text" name="phone" id="phone_tablet">
+                        <label for="descr-tablet">Сообщение</label>
+                        <textarea cols="5" rows="5" name="descr" id="descr-tablet"></textarea>
+                        <input type="submit" value="Отправить" class="send_mass">
+                    </form>
+                    </div>
+                </div>
+                <p> Все права защищены. <br>Разработано  в веб -студии  Seotm.com</p>
+            </div>
+            <!--Левая колонка -->
+            <div class="left_footer-tablet">
+                <h4>Центр дерматологии и <br>эстетической хирургии В. Багирова</h4>
+                <div class="contact_left-tablet">
+                    <div class="location-left-tablet">
+                        <img src="img/location.png">
+                        <p>    Lange Str. 71, 76530  <br>Baden-Baden, Германия</p>
+                    </div>
+                    <div class="phone-left-tablet">
+                        <img src="img/phone.png">
+                        <p>+49 7221 7020290</p>
+                    </div>
+                </div>
+
+            </div>
+            <!--Правая колонка -->
+            <div class="right_footer-tablet">
+                <h4>Клиника Багирова</h4>
+                <div class="contact_right-tablet">
+                    <div class="location-right-tablet">
+                        <img src="img/location.png">
+                        <p> Mühlenweg 2, 56235 <br>Ransbach-Baumbach, Германия</p>
+                    </div>
+                    <div class="phone-right-tablet">
+                        <img src="img/phone.png">
+                        <p>+49 2623 926777</p>
+                    </div>
+                </div>
+            </div>
+            <p> Все права защищены. Разработано  в веб -студии  Seotm.com</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
